@@ -1,17 +1,43 @@
 {% extends "travel/base.html" %}
-{% load crispy_forms_tags %}
-{% block content %}
-    <h1>Register Page !</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{form|crispy}}
 
-        <div class="mt-3">
-            <button type="submit" class="btn btn-primary">Create an account</button>
-        </div>
-    </form>
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}    
+    <form method="POST" class="mt-3"> 
+        {% csrf_token %} 
+         
+            <div class="input-group"> 
+                <img src="{% static 'travel/img/user.png' %}" class="needwidths icons" />
+                {{form1.username}} 
+            </div>
+
+            <div class="input-group">     
+                <img src="{% static 'travel/img/phone.png' %}" class="icons" />
+                {{form2.phonenumber}}
+            </div>
+
+            <div class="input-group"> 
+                <img src="{% static 'travel/img/email.png' %}" class="icons" />
+                {{form1.email}} 
+            </div> 
+
+            <div class="input-group">   
+                <img src="{% static 'travel/img/identitycard.png' %}" class="icons" />              
+                {{form2.identitynumber}} 
+            </div>
+
+            <div class="input-group"> 
+                <img src="{% static 'travel/img/password.png' %}" class="icons" />                
+                {{form1.password}} 
+            </div>              
+  
+            <div class="form-group mt-3">
+                <button type="submit" class="btn btn-primary text-center">Create an account</button>
+            </div>
+    </form> 
 
     <div class="pt-2">
-        <small class="text-muted">Already have an account? <a href="#">Log in</a></small>
+        <small class="text-muted">Already have an account? <a href="{% url 'login' %}">Log in</a></small>
     </div>
 {% endblock %}

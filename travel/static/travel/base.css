@@ -1,7 +1,46 @@
-.form-text {
-    display:none;
+:root{
+    --infont-textcolor : rgba(9, 30, 66, 0.5);
+    --clr-e5 : #E5E5E5;
 }
 
-.form-group {
-    margin-bottom:10px;
+*{
+    box-sizing:border-box;
 }
+
+body {
+    margin:0;
+    padding:0;            
+}
+
+.input-group {
+    margin-bottom:10px;        
+}
+
+.inputs {
+    width: 70%;
+    height: 46px;
+
+    border:0;        
+    border-radius:2px;        
+
+    background-color:var(--clr-e5);
+}
+
+.inputs:focus {    
+    outline:0;
+}
+
+.icons {        
+    position:absolute;
+    top:50%;
+    left:10px;
+    transform:translateY(-50%);
+}
+
+input::placeholder{
+    padding:50px;
+    color:var(--infont-textcolor); 
+}
+
+
+

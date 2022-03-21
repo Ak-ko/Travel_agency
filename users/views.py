@@ -1,17 +1,26 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-from .forms import RegisterationForm
+from .forms import RegisterationForm, UserFactForm
 from django.contrib import messages
+
 
 def register(request):    
     if request.method == 'POST':
-        form = RegisterationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get("username")
+        form1 = RegisterationForm(request.POST)
+        form2 = UserFactForm(request.POST)
+        if form1.is_valid():
+            form1.save()
+            username = form1.cleaned_data.get("username")
             
             messages.success(request, f'Your account with username : {username} is created Successfully')
+
             return redirect('travel-home')
     else:
-        form = RegisterationForm()
-    return render(request, 'users/register.html', {"form" : form})
+        form1 = RegisterationForm()
+        form2 = UserFactForm()
+
+    context = {
+        "form1" : form1,
+        "form2" : form2
+    }
+    return render(request, 'users/register.html', context)
