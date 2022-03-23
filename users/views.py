@@ -1,26 +1,47 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
-from .forms import RegisterationForm, UserFactForm
+from django.contrib import messages
+from django.contrib.auth.models import User
+from users.models import UserFacts
+
 from django.contrib import messages
 
 
 def register(request):    
-    if request.method == 'POST':
-        form1 = RegisterationForm(request.POST)
-        form2 = UserFactForm(request.POST)
-        if form1.is_valid():
-            form1.save()
-            username = form1.cleaned_data.get("username")
-            
-            messages.success(request, f'Your account with username : {username} is created Successfully')
+    if request.method == 'POST':                
+        password = request.POST['password']
+        if len(password) == 8:
+            username = request.POST['username']            
+            email = request.POST['email']
 
-            return redirect('travel-home')
+            if User.objects.filter(email=email).exists():
+                messages.warning(request, 'Same email')
+            else:
+                user = User(username=username, password=password, email=email)                
+
+                identity = request.POST['identity']
+                phonenumber = request.POST['phonenumber']     
+
+                if UserFacts.objects.filter(identitynumber=identity).exists() or UserFacts.objects.filter(phonenumber=phonenumber):
+                    messages.warning(request, 'Same phone or identity')
+                else:
+                    user_fact = UserFacts(phonenumber=phonenumber, identitynumber=identity, user=user)
+                    user_fact.save()
+                    user.save()
+                
+                    return redirect('travel-home')
+        else:
+            messages.warning(request, 'Password should have 8 characters.')
     else:
-        form1 = RegisterationForm()
-        form2 = UserFactForm()
+        pass
+    return render(request, 'users/register.html')
 
-    context = {
-        "form1" : form1,
-        "form2" : form2
-    }
-    return render(request, 'users/register.html', context)
+def login(request):
+    if request.method == 'POST':
+        pass
+    else:
+        pass
+    return render(request, 'users/login.html')
+
+def logout(request):
+    return render(request, 'users/logout.html')
+        

@@ -16,8 +16,9 @@ body {
 }
 
 /* start form fields  */
-.input-group {
-    margin-bottom:10px;        
+.form-group {
+    margin-bottom:10px;
+    position:relative;      
 }
 
 .inputs {
@@ -34,6 +35,10 @@ body {
 
 .inputs:focus {    
     outline:0;
+    border:none;
+    box-shadow:0px 0px 0px;
+
+    background-color:var(--clr-e5);
 }
 
 .icons {        
@@ -59,7 +64,6 @@ input[type=number] {
 /* end form fields  */
 
 /* Start Left side div */
-
 .left-side-div{
     height:400px;
 

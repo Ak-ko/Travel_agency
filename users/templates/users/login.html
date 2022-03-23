@@ -1,22 +1,19 @@
 {% extends "travel/base.html" %}
-
-{% load crispy_forms_tags %}
 {% load static %}
-
 {% block content %}    
     <form method="POST" class="mt-5 pt-5"> 
-        {% csrf_token %} 
-             
-            <div class="input-group">
-                <img src="{% static 'travel/img/email.png' %}" class="icons" />
-                {{form.email}}
-            </div>          
+            {% csrf_token %}
 
-            <div class="input-group"> 
-                <img src="{% static 'travel/img/password.png' %}" class="icons" />                
-                {{form.password}} 
-            </div>              
+            <div class="form-group">
+                <img src="{% static 'travel/img/user.png' %}" alt="" class="icons" />
+                <input type="text" class="form-control inputs" placeholder="Username" />
+            </div>
 
+            <div class="form-group">
+                <img src="{% static 'travel/img/password.png' %}" alt="" class="icons" />
+                <input type="password" class="form-control inputs" placeholder="Password" />
+            </div>
+    
             <div class="form-group mt-3">
                 <button type="submit" class="btn btn-primary">Log in</button>
             </div>                  
