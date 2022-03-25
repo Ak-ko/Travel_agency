@@ -1,5 +1,6 @@
 {% extends "travel/base.html" %}
 {% load static %}
-{% block content %}    
-   <h1>Logout Page</h1>
+{% block content %}
+   <h2>You have logged out.</h2>
+   <small><a href="{% url 'login' %}">Log in</a></small>
 {% endblock %}

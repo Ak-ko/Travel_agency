@@ -20,7 +20,7 @@ from users import views as users_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', users_views.register, name='register'),
-    path('login/',users_views.login,name='login'),
-    path('logout/', users_views.logout, name='logout'),
+    path('login/',users_views.loginUser,name='login'),
+    path('logout/', users_views.logoutUser, name='logout'),
     path('', include('travel.urls')),
 ]
